@@ -1,0 +1,31 @@
+# Stock Portfolio Tracker - Project Report
+
+## Overview
+A Python-based application to track stock investments with real-time data from financial APIs.
+
+## Features Implemented
+- Add/remove stocks from portfolio
+- Track current prices using Alpha Vantage API
+- Calculate portfolio value and performance
+- Basic command-line interface
+
+## Technical Details
+- Python 3.x
+- Requests library for API calls
+- Object-oriented design
+- Modular architecture
+
+## Setup Instructions
+1. Clone the repository
+2. Install dependencies: `pip install -r requirements.txt`
+3. Get API key from Alpha Vantage
+4. Run: `python app/main.py`
+
+## Sample Output
+![Sample Output](output/sample_output.png)
+
+## Future Enhancements
+- Web interface using Flask/Django
+- Historical performance charts
+- Dividend tracking
+- Export to CSV/Excel
