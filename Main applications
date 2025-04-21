@@ -1,0 +1,50 @@
+# app/main.py
+from portfolio import Portfolio
+from api_handler import StockAPIHandler
+
+def main():
+    portfolio = Portfolio()
+    api = StockAPIHandler("YOUR_API_KEY")
+    
+    while True:
+        print("\nStock Portfolio Tracker")
+        print("1. Add Stock")
+        print("2. Remove Stock")
+        print("3. View Portfolio")
+        print("4. Portfolio Performance")
+        print("5. Exit")
+        
+        choice = input("Enter your choice: ")
+        
+        if choice == "1":
+            symbol = input("Enter stock symbol: ").upper()
+            shares = float(input("Enter number of shares: "))
+            price = float(input("Enter purchase price per share: "))
+            portfolio.add_stock(symbol, shares, price)
+        
+        elif choice == "2":
+            symbol = input("Enter stock symbol to remove: ").upper()
+            shares = input("Enter number of shares to remove (leave blank to remove all): ")
+            if shares:
+                portfolio.remove_stock(symbol, float(shares))
+            else:
+                portfolio.remove_stock(symbol)
+        
+        elif choice == "3":
+            stocks = portfolio.get_portfolio()
+            for symbol, data in stocks.items():
+                current_price = api.get_current_price(symbol)
+                print(f"{symbol}: {data['shares']} shares")
+                print(f"  Purchase Price: ${data['purchase_price']:.2f}")
+                print(f"  Current Price: ${current_price:.2f}")
+                print(f"  Current Value: ${data['shares'] * current_price:.2f}")
+        
+        elif choice == "4":
+            # Calculate overall performance
+            pass
+        
+        elif choice == "5":
+            break
+
+if __name__ == "__main__":
+    main()
