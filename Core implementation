@@ -1,0 +1,25 @@
+# app/portfolio.py
+class Portfolio:
+    def __init__(self):
+        self.stocks = {}
+    
+    def add_stock(self, symbol, shares, purchase_price):
+        if symbol in self.stocks:
+            self.stocks[symbol]['shares'] += shares
+        else:
+            self.stocks[symbol] = {
+                'shares': shares,
+                'purchase_price': purchase_price
+            }
+    
+    def remove_stock(self, symbol, shares=None):
+        if symbol not in self.stocks:
+            raise ValueError("Stock not in portfolio")
+        
+        if shares is None or shares >= self.stocks[symbol]['shares']:
+            del self.stocks[symbol]
+        else:
+            self.stocks[symbol]['shares'] -= shares
+    
+    def get_portfolio(self):
+        return self.stocks
